@@ -184,10 +184,12 @@ namespace program
             if(position == 0)
             {
                 AddFirst(data);
+                return;
             }
             else if(position == size)
             {
                 AddLast(data);
+                return;
             }
             else
             {
