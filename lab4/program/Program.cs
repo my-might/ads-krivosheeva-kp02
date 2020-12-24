@@ -356,6 +356,7 @@ namespace program
             if(tail == null)
             {
                 Console.Write("Current list is empty.");
+                Console.ResetColor();
                 Console.WriteLine();
                 return;
             }
@@ -431,6 +432,7 @@ namespace program
             if(head == null)
             {
                 Console.Write("Current list of deleted is empty.");
+                Console.ResetColor();
                 Console.WriteLine();
                 return;
             }
