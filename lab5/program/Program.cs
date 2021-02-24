@@ -50,12 +50,13 @@ namespace program
                         string s = "";
                         while(true)
                         {
-                            Console.Write($"Enter {i} string in format: AA11111A ");
+                            Console.Write($"Enter {i} string in format: XX00000X ");
                             s = Console.ReadLine();
+                            s = s.ToUpper();
                             while(!CheckInput(s))
                             {
                                 Console.WriteLine("Error: Incorrect input format. Try again.");
-                                Console.Write($"Enter {i} string in format: AA11111A ");
+                                Console.Write($"Enter {i} string in format: XX00000X ");
                                 s = Console.ReadLine();
                             }
                             if(i != 0)
@@ -111,10 +112,6 @@ namespace program
                 {
                     string current = s[i];
                     char cur = current[columns];
-                    if(char.IsLetter(cur))
-                    {
-                        cur = char.ToUpper(cur);
-                    }
                     if((int)cur > max)
                     {
                         max = (int)cur;
@@ -125,10 +122,6 @@ namespace program
                 {
                     string current = s[i];
                     char cur = current[columns];
-                    if(char.IsLetter(cur))
-                    {
-                        cur = char.ToUpper(cur);
-                    }
                     count[(int)cur]++;
                 }
                 for(int i = count.Length - 1; i>0; i--)
@@ -140,10 +133,6 @@ namespace program
                 {
                     string current = s[i];
                     char cur = current[columns];
-                    if(char.IsLetter(cur))
-                    {
-                        cur = char.ToUpper(cur);
-                    }
                     sorted[count[(int)cur]-1] = s[i];
                     count[(int)cur]--;
                 }
