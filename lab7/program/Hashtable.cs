@@ -136,8 +136,10 @@ namespace program
         public void PrintUser(Key key)
         {
             Entry entry = FindEntry(key);
-            Console.WriteLine("{0} {1}, email: {2}, password: {3}", entry.key.firstName, entry.key.surname,
+            Console.Write("{0} {1}, email: {2}, password: {3}, ", entry.key.firstName, entry.key.surname,
                             entry.value.emailAddress, entry.value.password);
+            PrintFriends(key);
+            Console.WriteLine();
         }
         private void PrintFriends(Key user)
         {
