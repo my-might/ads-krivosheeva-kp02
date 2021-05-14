@@ -136,14 +136,14 @@ namespace program
             int rightChild = 2*i + 2;
             if(leftChild < heapSize)
             {
-                Console.WriteLine(whiteSpace + $"L: {heap[leftChild]}");
-                string newWhiteSpace = whiteSpace + "|   ";
+                Console.WriteLine(whiteSpace + $"`----L: {heap[leftChild]}");
+                string newWhiteSpace = whiteSpace + "|    ";
                 PrintChildren(leftChild, newWhiteSpace);
             }
             if(rightChild < heapSize)
             {
-                Console.WriteLine(whiteSpace + $"R: {heap[rightChild]}");
-                string newWhiteSpace = whiteSpace + "    ";
+                Console.WriteLine(whiteSpace + $"`----R: {heap[rightChild]}");
+                string newWhiteSpace = whiteSpace + "     ";
                 PrintChildren(rightChild, newWhiteSpace);
             }
         }
