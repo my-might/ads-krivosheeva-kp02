@@ -3,49 +3,49 @@ namespace program
 {
     public class BinaryMinHeap
     {
-        private string[] heap;
-        private int heapSize;
+        private string[] _heap;
+        private int _heapSize;
         public BinaryMinHeap()
         {
-            this.heap = new string[7];
-            this.heapSize = 0;
+            this._heap = new string[7];
+            this._heapSize = 0;
         }
         public void Insert(string s)
         {
-            if(heap.Length == heapSize)
+            if(_heap.Length == _heapSize)
             {
                 Resize();
             }
-            int position = heapSize;
-            heap[heapSize] = s;
-            heapSize++;
+            int position = _heapSize;
+            _heap[_heapSize] = s;
+            _heapSize++;
             HeapifyBottomToTop(position);
         }
         public string ExtractMin()
         {
-            if(heapSize == 0)
+            if(_heapSize == 0)
             {
                 throw new Exception("Cannot extract, heap is empty.");
             }
-            string min = heap[0];
-            heap[0] = heap[heapSize - 1];
-            heap[heapSize - 1] = min;
-            heapSize--;
+            string min = _heap[0];
+            _heap[0] = _heap[_heapSize - 1];
+            _heap[_heapSize - 1] = min;
+            _heapSize--;
             HeapifyTopToBottom(0);
             return min;
         }
         private void Resize()
         {
-            Array.Resize(ref heap, heap.Length*2);
+            Array.Resize(ref _heap, _heap.Length*2);
         }
         private void HeapifyBottomToTop(int i)
         {
             int parentIndex = (i-1)/2;
-            if(parentIndex >= 0 && CompareStrings(heap[parentIndex], heap[i]) == 2)
+            if(parentIndex >= 0 && CompareStrings(_heap[parentIndex], _heap[i]) == 2)
             {
-                string buffer = heap[parentIndex];
-                heap[parentIndex] = heap[i];
-                heap[i] = buffer;
+                string buffer = _heap[parentIndex];
+                _heap[parentIndex] = _heap[i];
+                _heap[i] = buffer;
                 HeapifyBottomToTop(parentIndex);
             }
         }
@@ -54,9 +54,9 @@ namespace program
             int leftChild = 2*i + 1;
             int rightChild = 2*i + 2;
             int min = 0;
-            if(leftChild < heapSize)
+            if(leftChild < _heapSize)
             {
-                if(rightChild < heapSize && CompareStrings(heap[leftChild], heap[rightChild]) == 2)
+                if(rightChild < _heapSize && CompareStrings(_heap[leftChild], _heap[rightChild]) == 2)
                 {
                     min = rightChild;
                 }
@@ -69,17 +69,17 @@ namespace program
             {
                 return;
             }
-            if(CompareStrings(heap[min], heap[i]) == 1)
+            if(CompareStrings(_heap[min], _heap[i]) == 1)
             {
-                string buffer = heap[min];
-                heap[min] = heap[i];
-                heap[i] = buffer;
+                string buffer = _heap[min];
+                _heap[min] = _heap[i];
+                _heap[i] = buffer;
                 HeapifyTopToBottom(min);
             }
         }
         public string[] PyramidSort(string[] input, bool control)
         {
-            if(heap[0] != null)
+            if(_heap[0] != null)
             {
                 ClearHeap();
             }
@@ -89,7 +89,7 @@ namespace program
                 if(control)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Insert {input[i]}...");
+                    Console.WriteLine($"Insert '{input[i]}'...");
                     Console.ResetColor();
                     PrintHeap();
                 }
@@ -104,29 +104,28 @@ namespace program
                 if(control)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Extract {extracted}...");
+                    Console.WriteLine($"Extract '{extracted}'...");
                     Console.ResetColor();
                     PrintHeap();
                 }
             }
             string[] sorted = new string[input.Length];
-            Array.Copy(heap, sorted, input.Length);
+            Array.Copy(_heap, sorted, input.Length);
             return sorted;
         }
         private void ClearHeap()
         {
-            this.heap = new string[7];
-            this.heapSize = 0; 
+            this._heap = new string[7];
+            this._heapSize = 0; 
         }
-
         public void PrintHeap()
         {
-            if(heapSize == 0)
+            if(_heapSize == 0)
             {
                 Console.WriteLine("Heap is empty.");
                 return;
             }
-            Console.WriteLine($"Root: {heap[0]}");
+            Console.WriteLine($"Root: {_heap[0]}");
             string whiteSpace = "   ";
             PrintChildren(0, whiteSpace);
         }
@@ -134,15 +133,15 @@ namespace program
         {
             int leftChild = 2*i + 1;
             int rightChild = 2*i + 2;
-            if(leftChild < heapSize)
+            if(leftChild < _heapSize)
             {
-                Console.WriteLine(whiteSpace + $"`----L: {heap[leftChild]}");
+                Console.WriteLine(whiteSpace + $"`----L: {_heap[leftChild]}");
                 string newWhiteSpace = whiteSpace + "|    ";
                 PrintChildren(leftChild, newWhiteSpace);
             }
-            if(rightChild < heapSize)
+            if(rightChild < _heapSize)
             {
-                Console.WriteLine(whiteSpace + $"`----R: {heap[rightChild]}");
+                Console.WriteLine(whiteSpace + $"`----R: {_heap[rightChild]}");
                 string newWhiteSpace = whiteSpace + "     ";
                 PrintChildren(rightChild, newWhiteSpace);
             }
@@ -161,7 +160,7 @@ namespace program
                     return 2;
                 }
             }
-            if(minLength == s1.Length && minLength == s2.Length)
+            if(s1.Length == s2.Length)
             {
                 return 0;
             }

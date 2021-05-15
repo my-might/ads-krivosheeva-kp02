@@ -10,15 +10,15 @@ namespace program
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(@"Available options:
-                1. Control tree
-                2. Enter data for tree
+                1. Control example
+                2. Enter data to sort
                 3. Exit");
                 Console.ResetColor();
                 string command = Console.ReadLine();
                 if(command == "1")
                 {
                     string[] control = new string[]{"base", "airport", "queue", "city", "yellow", "anyone", "done", "exercise",
-                                                    "zebra", "pyton", "done", "queue"};
+                                                    "zebra", "asd", "done", "queue"};
                     ProcessData(control, true);
                 }
                 else if(command == "2")
